@@ -41,6 +41,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        if shortcutItem.type == "quickWatch" {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let productList = sb.instantiateViewControllerWithIdentifier("productLists")
+            
+            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+            root?.presentViewController(productList, animated: false, completion: {() -> Void in completionHandler(true)
+            } )
+
+        }
+    }
 
 }
 
